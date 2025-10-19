@@ -47,7 +47,7 @@ function renderAccountsList() {
     if (out == null) {
         return;
     }
-    if (trans.length == 0) {
+    if (accounts.length == 0) {
         document.getElementById("hiddenNavHelper").style.display = "";
         out.innerHTML = "";
         return;
@@ -343,8 +343,8 @@ function generateRandomAccount() {
     retrieveUsersFromStorage()
     retrieveAccountsFromStorage();
 
-    console.log("lunghezz user" + users.length);
-    console.log("lunghezz account" + accounts.length);
+    // console.log("lunghezz user" + users.length);
+    // console.log("lunghezz account" + accounts.length);
 
     if (users.length === 0) {
         response.innerText = "Non sono presenti utenti in archvio";
@@ -360,23 +360,29 @@ function generateRandomAccount() {
     }
 
     let check = false;
-    while(true){
-        let randUser = users[Math.floor(Math.random() * (users.length))];
-        for (let i = 0; i < accounts.length; i++) {
-            if (randUser.id != accounts.owner.id) {
-                check = true;
-                break;
+    let randUser;
+    if(accounts.length === 0 ){
+        randUser = users[Math.floor(Math.random() * (users.length))];
+    }else{
+        while(true){
+            randUser = users[Math.floor(Math.random() * (users.length))];
+            // console.log("aiuto");
+            for (let i = 0; i < accounts.length; i++) {
+                // console.log("in");
+                if (randUser.id != accounts[i].owner.id) {
+                    check = true;
+                    break;
+                }
             }
+            if(check)
+            break;
         }
-        if(check)
-        break;
     }
-
     let randAmount = Math.floor(Math.random() * 20000 * 100) / 100;
     // console.log(randUser);
     accounts.push(new Account(randUser, randAmount))
     pushAccountsToStorage();
-    renderAccountList();
+    renderAccountsList();
 }
 
 function clearAccounts() {
