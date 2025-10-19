@@ -1,4 +1,4 @@
-let tempusers = [];
+// let tempusers = [];
 var users = [];
 var accounts = [];
 var trans = [];
@@ -40,6 +40,21 @@ function renderTransList() {
     document.getElementById("hiddenNavHelper").style.display = "none";
 
     out.innerHTML = trans.map(d => d.renderTableRow()).join(" ");
+}
+function renderAccountsList() {
+    retrieveAccountsFromStorage();
+    var out = document.getElementById('generatedAccountsList');
+    if (out == null) {
+        return;
+    }
+    if (trans.length == 0) {
+        document.getElementById("hiddenNavHelper").style.display = "";
+        out.innerHTML = "";
+        return;
+    }
+    document.getElementById("hiddenNavHelper").style.display = "none";
+
+    out.innerHTML = accounts.map(d => d.renderTableRow()).join(" ");
 }
 // ------------------------------ USERS ------------------------------------
 
@@ -288,7 +303,7 @@ function clearTransactions() {
     renderTransList();
 }
 
-// --------------------------- TRANSACTIONS --------------------------------
+// --------------------------- ACCOUNTS --------------------------------
 class Account {
     constructor(owner, deposit) {
         this.owner = owner;
@@ -297,58 +312,75 @@ class Account {
     renderTableRow() {
         return `<tr>
         <td>${this.owner.cognome} ${this.owner.nome}</td>
-        <td>${this.net}</td>
-        <td>${this.type}</td>
-        <td>${this.date}</td>
-        <td><button class="button-form" onclick="deleteTransById(${trans.indexOf(this)})">Elimina</button></td>
+        <td>${this.deposit}</td>
+        <td><button class="button-form" onclick="deleteAccountById(${accounts.indexOf(this)})">Elimina</button></td>
         </tr>`;
     }
 
 }
-function deleteTransById(id) {
-    retrieveTransactionsFromStorage();
-    trans.splice(id, 1);
-    pushTransactionToStorage();
-    renderTransList();
+function deleteAccountById(id) {
+    retrieveAccountsFromStorage();
+    accounts.splice(id, 1);
+    pushAccountsToStorage();
+    renderAccountsList();
 }
-function retrieveTransactionsFromStorage() {
-    let temp = JSON.parse(localStorage.getItem("trans"));
+function retrieveAccountsFromStorage() {
+    let temp = JSON.parse(localStorage.getItem("accounts"));
     if (temp == null) return;
-    let tTrans = [];
+    let tAccounts = [];
     for (let i = 0; i < temp.length; i++) {
-        tTrans.push(new Transaction(temp[i].owner, temp[i].net, temp[i].type, temp[i].date));
+        tAccounts.push(new Account(temp[i].owner, temp[i].deposit));
     }
-    trans = tTrans;
+    accounts = tAccounts;
 }
-function pushTransactionToStorage() {
-    localStorage.setItem("trans", JSON.stringify(trans));
-}
-function randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()))
+function pushAccountsToStorage() {
+    localStorage.setItem("accounts", JSON.stringify(accounts));
 }
 
-function generateRandomTransaction() {
-    let response = document.getElementById("userarchiveresponse");
+function generateRandomAccount() {
+    let response = document.getElementById("useraccountsresponse");
     response.style.visibility = "hidden";
     retrieveUsersFromStorage()
+    retrieveAccountsFromStorage();
+
+    console.log("lunghezz user" + users.length);
+    console.log("lunghezz account" + accounts.length);
+
     if (users.length === 0) {
         response.innerText = "Non sono presenti utenti in archvio";
         response.style.color = "orange";
         response.style.visibility = "visible";
         return;
     }
-    retrieveTransactionsFromStorage();
-    console.log(users);
-    let randUser = users[Math.floor(Math.random() * (users.length))];
+    if (users.length === accounts.length) {
+        response.innerText = "Conti pieni";
+        response.style.color = "orange";
+        response.style.visibility = "visible";
+        return;
+    }
+
+    let check = false;
+    while(true){
+        let randUser = users[Math.floor(Math.random() * (users.length))];
+        for (let i = 0; i < accounts.length; i++) {
+            if (randUser.id != accounts.owner.id) {
+                check = true;
+                break;
+            }
+        }
+        if(check)
+        break;
+    }
+
     let randAmount = Math.floor(Math.random() * 20000 * 100) / 100;
-    console.log(randUser);
-    trans.push(new Transaction(randUser, randAmount, "RandomAction", randomDate(new Date(1990, 1, 4), new Date())))
-    pushTransactionToStorage();
-    renderTransList();
+    // console.log(randUser);
+    accounts.push(new Account(randUser, randAmount))
+    pushAccountsToStorage();
+    renderAccountList();
 }
 
-function clearTransactions() {
-    trans = [];
-    pushTransactionToStorage();
-    renderTransList();
+function clearAccounts() {
+    accounts = [];
+    pushAccountsToStorage();
+    renderAccountsList();
 }

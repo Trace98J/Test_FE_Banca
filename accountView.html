@@ -14,23 +14,23 @@
     </header>
 
     <div class="central-bold-menu">
-            Transaction List
+            Lista Conti
     </div>
 
     <div class="generative-buttons">
         <div class="buttons-row">
             <div class="left-button">
-                <button class="button-form" onclick="generateRandomTransaction()">Generate a random
+                <button class="button-form" onclick="generateRandomAccount()">Generate a random
                     transaction</button>
             </div>
             <div class="right-button">
-                <button class="button-form" onclick="clearTransactions()">Clear all
+                <button class="button-form" onclick="clearAccounts()">Clear all
                     transactions</button>
             </div>
         </div>
     </div>
 
-    <div id="userarchiveresponse" class="inlineresponsetrans"></div>
+    <div id="useraccountsresponse" class="inlineresponsetrans"></div>
 
     <div class="output">
         <table class="table-t">
@@ -43,7 +43,7 @@
                     <th>Elimina</th>
                 </tr>
             </thead>
-            <tbody id="generatedTransList">
+            <tbody id="generatedAccountsList">
             </tbody>
 
         </table>
@@ -53,7 +53,7 @@
 
     <script src="script.js"></script>
     <script>
-        renderTransList();
+        renderAccountsList();
         $.get("/nav.html", function (data) {
             $("#nav-placeholder").replaceWith(data);
         });
