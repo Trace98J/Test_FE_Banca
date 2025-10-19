@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDB - User Action</title>
+    <title>BDB - Modifica Clienti</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://code.jquery.com/jquery.min.js"></script>
 </head>
@@ -15,13 +15,13 @@
     </header>
     <main>
         <div class="central-bold-menu">
-            Add/Remove Users
+            Menu Modifica Clienti
         </div>
 
         <div class="forms">
             <div class="form" id="left-form">
                 <form onsubmit="aggiungiUser(event)">
-                    <h1>Add new client</h1>
+                    <h1>Aggiungi nuovo cliente</h1>
                     <div>
                         <label for="nome">Nome</label>
                         <input id="nome" name="nome" type="text">
@@ -53,14 +53,61 @@
         
                     </div>
                     
-                    <button class="button-form" type="submit">Add new</button>
+                    <button class="button-form" type="submit">Aggiungi Cliente</button>
                     
+
+                </form>
+            </div>
+            <div class="form" id="middle-form">
+                <form onsubmit="modificaUser(event)">
+                    <h1>Modifica cliente</h1>
+                    <div>
+                        <label for="oldNome">Vecchio Nome</label>
+                        <input id="oldNome" name="oldNome" type="text">
+                    </div>
+                    <div>
+                        <label for="oldCognome">Vecchio Cognome</label>
+                        <input id="oldCognome" name="oldCognome" type="text">
+                    </div>
+                    <div>
+                        <label for="nome">Nuovo Nome</label>
+                        <input id="nome" name="nome" type="text">
+                    </div>
+                    <div>
+                        <label for="cognome">Nuovo Cognome</label>
+                        <input id="cognome" name="cognome" type="text">
+                    </div>
+                    <div>
+                        <label for="datanascita">Data di Nascita</label>
+                        <input id="datanascita" name="datanascita" type="date">
+                    </div>
+                    <div>
+                        <label for="tipologia">Tipo conto</label>
+                        <select id="tipologia" name="tipologia">
+                            <option value="Ordinario">
+                                Ordinario
+                            </option>
+                            <option value="Pacchetto">
+                                Pacchetto
+                            </option>
+                            <option value="Convenzionato">
+                                Convenzionato
+                            </option>
+                        </select>
+                    </div>
+                    
+                    <div id="modifyresponse" class="inlineresponse">
+        
+                    </div>
+                    
+                    <button class="button-form" type="submit">Modifica Cliente</button>
+
 
                 </form>
             </div>
             <div class="form" id="right-form">
                 <form onsubmit="rimuoviUser(event)">
-                    <h1>Remove client</h1>
+                    <h1>Rimuovi cliente</h1>
                     <div>
                         <label for="nome">Nome</label>
                         <input id="nome" name="nome" type="text">
@@ -75,7 +122,7 @@
                     <div id="removeresponse" class="inlineresponse">
 
                     </div>
-                    <button class="button-form" type="submit">Remove existing</button>
+                    <button class="button-form" type="submit">Rimuovi Cliente</button>
 
 
                 </form>
