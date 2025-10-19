@@ -46,6 +46,26 @@ body {
     right: 0%;
 }
 
+.central-bold-menu {
+    text-align: center;
+    font-family: 'carto-bold';
+    font-size: 40px;
+
+    width: 100%;
+    margin-top: 3rem;
+    /* margin-bottom: 3rem; */
+    padding-top: 4.5rem;
+    padding-bottom: 2.5rem;
+    padding-left: auto;
+    padding-right: auto;
+    left: 0%;
+    right: 0%;
+}
+
+#pap{
+    font-family: "papyrus";
+}
+
 /* ///////////////// NAVBAR ////////////// */
 .navbar>* {
     background-color: #cce0ffc0;
@@ -104,7 +124,7 @@ body {
     gap: 2rem;
     width: 100%;
     height: 100%;
-    padding-top: 7rem;
+    /* padding-top: 7rem; */
 }
 
 form {
@@ -220,14 +240,15 @@ form textarea:focus {
 }
 
 /* //////////// TABLES //////////// */
+
 .table-u {
     display: border-box;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     /* border-collapse: collapse; */
-    margin: 2rem 0;
-    margin-top: 7.5rem;
+    margin:0;
+    /* margin-top: 7.5rem; */
     
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     caption-side: bottom;
@@ -283,7 +304,7 @@ td{
 /* //////////// TRANS BUTTONS /////////// */
 
 .generative-buttons{
-    margin-top: 7rem;
+    margin-top: 0rem;
     margin-bottom: 0;
     padding-bottom: 0;
 }
