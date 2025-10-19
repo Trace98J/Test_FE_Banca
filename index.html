@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banca De Banqis</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+    <header>
+        <div id="nav-placeholder"></div>
+    </header>
+    <main class="main">
+        <div class="central-bold-face">
+            <h2 id="pap">The most egyptian homepage</h2>
+            <p>Use the navigation bar to select your desired operation</p>
+        </div>
+    </main>
+
+    <script>
+        $.get("nav.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
+    
+</body>
+</html>

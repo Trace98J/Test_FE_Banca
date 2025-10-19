@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDB - Client Operations</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="nav-placeholder"></div>
+    </header>
+    <div class="generative-buttons">
+        <div class="buttons-row">
+            <div class="left-button">
+                <button class="button-form" onclick="generateRandomTransaction()">Generate a random
+                    transaction</button>
+            </div>
+            <div class="right-button">
+                <button class="button-form" onclick="clearTransactions()">Clear all
+                    transactions</button>
+            </div>
+        </div>
+    </div>
+    <div class="output">
+        <table class="table-t">
+            <thead>
+                <tr>
+                    <th>Trans.Owner</th>
+                    <th>Amount</th>
+                    <th>Trans.Type</th>
+                    <th>Executed on</th>
+                    <th>Elimina</th>
+                </tr>
+            </thead>
+            <tbody id="generatedTransList">
+            </tbody>
+
+        </table>
+        <p id="hiddenNavHelper" style="display: none;">No transactions to show, generate one via the dedicated button
+            above.</p>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        renderTransList();
+        $.get("/nav.html", function (data) {
+            $("#nav-placeholder").replaceWith(data);
+        });
+    </script>
+</body>
+
+</html>
