@@ -364,18 +364,15 @@ function generateRandomAccount() {
     if(accounts.length === 0 ){
         randUser = users[Math.floor(Math.random() * (users.length))];
     }else{
-        while(true){
+        while(!check){
+            check = true;
             randUser = users[Math.floor(Math.random() * (users.length))];
-            // console.log("aiuto");
             for (let i = 0; i < accounts.length; i++) {
-                // console.log("in");
-                if (randUser.id != accounts[i].owner.id) {
-                    check = true;
-                    break;
+                if (randUser.id === accounts[i].owner.id) {
+                    check = false;
+                    break;                    
                 }
             }
-            if(check)
-            break;
         }
     }
     let randAmount = Math.floor(Math.random() * 20000 * 100) / 100;
