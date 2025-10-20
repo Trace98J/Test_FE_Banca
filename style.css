@@ -62,7 +62,7 @@ body {
     right: 0%;
 }
 
-#pap{
+#pap {
     font-family: "papyrus";
 }
 
@@ -122,6 +122,7 @@ body {
 
 .forms {
     display: flex;
+    flex-direction: row;
     gap: 2rem;
     width: 100%;
     height: 100%;
@@ -166,6 +167,7 @@ form {
     width: 33%;
     /* height: auto; */
 }
+
 /* Struttura dei campi */
 form>div {
     display: grid;
@@ -246,11 +248,11 @@ form textarea:focus {
     touch-action: manipulation;
 }
 
-.button-form:hover{
+.button-form:hover {
     background-color: #3c99d6;
 }
 
-.button-form:active{
+.button-form:active {
     background-color: #347fb1;
 }
 
@@ -262,15 +264,14 @@ form textarea:focus {
     justify-content: space-between;
     width: 100%;
     /* border-collapse: collapse; */
-    margin:0;
+    margin: 0;
     /* margin-top: 7.5rem; */
-    
+
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     caption-side: bottom;
     box-sizing: border-box;
-    
+
     border-collapse: collapse
-    
 }
 
 .table-t {
@@ -281,16 +282,15 @@ form textarea:focus {
     /* border-collapse: collapse; */
     margin: 2rem 0;
     margin-top: 2rem;
-    
+
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     caption-side: bottom;
     box-sizing: border-box;
-    
+
     border-collapse: collapse
-    
 }
 
-thead{
+thead {
     border-color: #040025;
     border-style: solid;
     border-width: 0;
@@ -298,7 +298,7 @@ thead{
     margin : 0; */
 }
 
-th{
+th {
     box-sizing: border-box;
     background-color: #effeff;
     text-align: left;
@@ -307,7 +307,7 @@ th{
     padding: 0.75rem;
 }
 
-td{
+td {
     box-sizing: border-box;
     background-color: #fcfdf5;
     text-align: left;
@@ -318,19 +318,19 @@ td{
 
 /* //////////// TRANS BUTTONS /////////// */
 
-.generative-buttons{
+.generative-buttons {
     margin-top: 0rem;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-.generative-buttons > div{
+.generative-buttons>div {
     display: flex;
     height: 40px;
     align-items: center;
     /* text-align: center; */
     flex-direction: column;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
 
 /* //////////// RESIZING //////////// */
@@ -359,7 +359,7 @@ td{
     }
 }
 
-@media (max-width: 1036px) {
+@media (max-width: 1052px) {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
@@ -383,5 +383,20 @@ td{
 
     .central-bold-menu {
         margin-top: 14rem;
+    }
+}
+
+@media (max-width: 870px) {
+    .forms {
+        display: flex;
+        flex-direction: column;
+
+    }
+}
+
+@media (max-width: 1230px) {
+    form h1{
+        margin-bottom: 4.5rem;
+
     }
 }
