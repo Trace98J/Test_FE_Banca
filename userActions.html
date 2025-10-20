@@ -20,7 +20,7 @@
 
         <div class="forms">
             <div class="form" id="left-form">
-                <form onsubmit="aggiungiUser(event)">
+                <form onsubmit="aggiungiUser(event)" autocomplete="off">
                     <h1>Aggiungi nuovo cliente</h1>
                     <div>
                         <label for="nome">Nome</label>
@@ -59,7 +59,7 @@
                 </form>
             </div>
             <div class="form" id="middle-form">
-                <form onsubmit="modificaUser(event)">
+                <form onsubmit="modificaUser(event)" autocomplete="off">
                     <h1>Modifica cliente</h1>
                     <div>
                         <label for="oldNome">Vecchio Nome</label>
@@ -106,7 +106,7 @@
                 </form>
             </div>
             <div class="form" id="right-form">
-                <form onsubmit="rimuoviUser(event)">
+                <form onsubmit="rimuoviUser(event)" autocomplete="off">
                     <h1>Rimuovi cliente</h1>
                     <div>
                         <label for="nome">Nome</label>

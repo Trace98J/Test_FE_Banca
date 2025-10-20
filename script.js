@@ -83,16 +83,13 @@ class User extends Entity {
         <td><button class="button-form" onclick="deleteuserbyid(${users.indexOf(this)})">Elimina</button></td>
         </tr>`;
     }
-
+    
 }
+//<td><button class="button-form" onclick="deleteuserbyid(${users.indexOf(this)})">Elimina</button></td>
 
 function deleteuserbyid(id) {
     retrieveUsersFromStorage();
-    users.splice(id, 1);
-    if (users.length === 0) {
-        nextID = 1;
-        localStorage.setItem("nextID", JSON.stringify(nextID));
-    }
+    userDeletionChecks(users[id],id);
     pushUsersToStorage();
     renderUserList();
 }
@@ -117,12 +114,12 @@ function pushUsersToStorage() {
 }
 
 function aggiungiUser(event) {
-
+    
     event.preventDefault();
-
+    
     const form = event.target;
     let response = document.getElementById("addresponse");
-
+    
     if (addUser(nextID, form.nome.value, form.cognome.value, form.datanascita.value, form.tipologia.value)) {
         response.innerText = "Utente aggiunto con successo";
         response.style.color = "green"
@@ -154,7 +151,7 @@ function addUser(id, nome, cognome, datanascita, tipologia) {
 function modificaUser(event) {
 
     event.preventDefault();
-
+    
     const form = event.target;
     let response = document.getElementById("modifyresponse");
 
@@ -178,7 +175,7 @@ function modifyUser(oldNome, oldCognome, nome, cognome, datanascita, tipologia) 
     }
     retrieveUsersFromStorage();
     let b = new User(0, nome, cognome, datanascita, tipologia)
-
+    
     for (let i = 0; i < users.length; i++) {
         if (users[i].nome === oldNome && users[i].cognome === oldCognome) {
             b.id = users[i].id;
@@ -192,7 +189,7 @@ function modifyUser(oldNome, oldCognome, nome, cognome, datanascita, tipologia) 
 
 function rimuoviUser(event) {
     event.preventDefault();
-
+    
     const form = event.target;
     let response = document.getElementById("removeresponse");
     if (removeUser(form.nome.value, form.cognome.value)) {
@@ -210,14 +207,9 @@ function rimuoviUser(event) {
 
 function removeUser(nome, cognome) {
     retrieveUsersFromStorage();
-    console.log("aaaaaaaa");
     for (let i = 0; i < users.length; i++) {
         if (users[i].nome === nome && users[i].cognome === cognome) {
-            users.splice(i, 1);
-            if (users.length === 0) {
-                nextID = 1;
-                localStorage.setItem("nextID", JSON.stringify(nextID));
-            }
+            userDeletionChecks(users[i],i);
             pushUsersToStorage();
             return true;
         }
@@ -225,6 +217,24 @@ function removeUser(nome, cognome) {
     return false;
 }
 
+function userDeletionChecks(user,index) {
+    retrieveAccountsFromStorage();
+    if(accounts.length != 0){
+        for (let i = 0; i < accounts.length; i++) {
+            if (user.id === accounts[i].owner.id) {
+                accounts.splice(i,1);
+                break;
+            }
+        }
+    }
+    users.splice(index, 1);
+    if (users.length === 0) {
+        nextID = 1;
+        localStorage.setItem("nextID", JSON.stringify(nextID));
+    }
+    console.log(users);
+    pushAccountsToStorage();
+}
 // function findUser(nome, cognome) {
 //     retrieveUsersFromStorage();
 //     for (let i = 0; i < users.length; i++) {
@@ -361,16 +371,16 @@ function generateRandomAccount() {
 
     let check = false;
     let randUser;
-    if(accounts.length === 0 ){
+    if (accounts.length === 0) {
         randUser = users[Math.floor(Math.random() * (users.length))];
-    }else{
-        while(!check){
+    } else {
+        while (!check) {
             check = true;
             randUser = users[Math.floor(Math.random() * (users.length))];
             for (let i = 0; i < accounts.length; i++) {
                 if (randUser.id === accounts[i].owner.id) {
                     check = false;
-                    break;                    
+                    break;
                 }
             }
         }
