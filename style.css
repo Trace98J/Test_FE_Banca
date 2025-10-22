@@ -16,7 +16,7 @@
     src: url("fonts/CartoGothicStd-Bold.otf") format("opentype");
 }
 
-/* /////////////// GENERICS ///////////////// */
+/* /////////////// GENERAL ///////////////// */
 
 body {
     font-family: 'carto';
@@ -66,13 +66,17 @@ body {
     font-family: "papyrus";
 }
 
+h1{
+    letter-spacing: 0.1rem;
+}
+
 /* ///////////////// NAVBAR ////////////// */
+
 .navbar>* {
     background-color: #cce0ffc0;
     display: flex;
-
-    align-items: center;
-
+    flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: space-between;
     height: 5rem;
     top: 0%;
@@ -83,23 +87,23 @@ body {
     padding-bottom: 0.5rem;
     position: fixed;
     width: 100%;
-    flex-wrap: wrap;
     z-index: 1;
 }
 
 .navbar-list {
     font-family: "carto-bold";
     font-size: 1.75rem;
-
+    
     display: flex;
+    flex-wrap: wrap;
     list-style: none;
     justify-content: flex-end;
-
     gap: 2rem;
 }
 
 .navbar li a {
     box-sizing: border-box;
+    flex-direction: row;
     align-items: center;
     text-decoration: none;
     color: #313131;
@@ -114,8 +118,10 @@ body {
 }
 
 #logo {
-    width: 6rem;
+    width: 9rem;
+    height : 5rem;
     display: border-box;
+    margin-left: 1rem;
 }
 
 /* /////////// FORMS ////////// */
@@ -324,7 +330,8 @@ td {
     padding-bottom: 0;
 }
 
-.generative-buttons>div {
+/* .generative-buttons>div { */
+.buttons-row {
     display: flex;
     height: 40px;
     align-items: center;
@@ -335,27 +342,15 @@ td {
 
 /* //////////// RESIZING //////////// */
 
-
-@media (max-width: 750px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px 20px;
-        bottom: 5rem;
+@media (max-width: 1340px) {
+    form h1{
+        margin-bottom: 3.5rem;
     }
+}
 
-    .container-fluid {
-        padding-bottom: 15rem;
-    }
-
-    .navbar-list {
-        flex-direction: column;
-        width: 100%;
-        gap: 0.75rem;
-    }
-
-    .central-bold-face {
-        margin-top: 12rem;
+@media (max-width: 1230px) {
+    form h1{
+        margin-bottom: 4.5rem;
     }
 }
 
@@ -366,37 +361,90 @@ td {
         padding: 10px 20px;
         bottom: 1rem;
     }
-
+    
     .container-fluid {
-        padding-bottom: 15rem;
+        padding-bottom: 7rem;
     }
-
+    
     .navbar-list {
-        flex-direction: column;
         width: 100%;
         gap: 0.75rem;
     }
-
+    
     .central-bold-face {
         margin-top: 12rem;
     }
-
+    
     .central-bold-menu {
         margin-top: 14rem;
     }
 }
 
-@media (max-width: 870px) {
+
+@media (max-width: 879px) {
+    
     .forms {
         display: flex;
+        flex-direction: column;        
+    }
+    .navbar-list {
+        width: 100%;
+        gap: 0.75rem;
         flex-direction: column;
-
+    }
+    .container-fluid {
+        padding-bottom: 13rem;
+    }
+    .central-bold-menu {
+        margin-top: 16rem;
     }
 }
 
-@media (max-width: 1230px) {
-    form h1{
-        margin-bottom: 4.5rem;
+@media (max-width: 750px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+        bottom: 5rem;
+    }
+    
+    .container-fluid {
+        padding-bottom: 15rem;
+    }
+    
+    .navbar-list {
+        width: 100%;
+        gap: 0.75rem;
+    }
+    
+    .central-bold-face {
+        margin-top: 12rem;
+    }
+}
 
+@media (max-width: 445px){
+
+    .buttons-row{
+        flex-wrap: nowrap;
+        gap: 0.25rem;
+    }
+}
+
+@media (max-width: 236px){
+
+    .button-form{
+        height:50px;
+    }
+}
+
+@media (max-width: 179px){
+    .container-fluid {
+        padding-bottom: 20rem;
+    }
+    .central-bold-face {
+        margin-top: 17rem;
+    }
+    .central-bold-menu {
+        margin-top: 19rem;
     }
 }
