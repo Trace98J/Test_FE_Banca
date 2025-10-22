@@ -169,6 +169,7 @@ form {
     width: 100%;
     height: auto;
     max-width: 420px;
+    min-width: 145px;
     /* margin: 2rem; */
     padding: 1rem;
     margin: auto;
@@ -213,6 +214,8 @@ form>div {
 form label {
     margin: 0;
     font-weight: 500;
+    word-wrap: break-word;
+    white-space: normal; 
 }
 
 form h1 {
@@ -287,6 +290,11 @@ form textarea:focus {
 
 .button-form:active {
     background-color: #347fb1;
+}
+
+input[type="date"] {
+  min-width: 0;          
+  width: 100%;           
 }
 
 /* //////////// TABLES //////////// */
@@ -403,12 +411,12 @@ td {
     }
 
     .central-bold-menu {
-        margin-top: 14rem;
+        margin-top: 9rem;
     }
 }
 
 
-@media (max-width: 879px) {
+@media (max-width: 900px) {
 
     .forms {
         display: flex;
@@ -422,11 +430,11 @@ td {
     }
 
     .container-fluid {
-        padding-bottom: 13rem;
+        padding-bottom: 15rem;
     }
 
     .central-bold-menu {
-        margin-top: 16rem;
+        margin-top: 18rem;
     }
 }
 
@@ -438,10 +446,6 @@ td {
         bottom: 5rem;
     }
 
-    .container-fluid {
-        padding-bottom: 15rem;
-    }
-
     .navbar-list {
         width: 100%;
         gap: 0.75rem;
@@ -450,10 +454,32 @@ td {
     .central-bold-face {
         margin-top: 12rem;
     }
+    form h1 {
+        font-size: 1.5rem; 
+    }
+    .button-form {
+        height: 53px;
+        margin-bottom: 1rem;
+    }
+    .inlineresponse {
+    margin-bottom: 1.2rem;
+    }
+}
+
+@media (max-width: 540px) {
+    
+    .button-form {
+        height: 53px;
+        margin-bottom: 1rem;
+    }
 }
 
 @media (max-width: 445px) {
-
+    
+    .inlineresponse {
+    margin-bottom: 1.9rem;
+    }
+    
     .buttons-row {
         flex-wrap: nowrap;
         gap: 0.25rem;
@@ -463,7 +489,7 @@ td {
 @media (max-width: 236px) {
 
     .button-form {
-        height: 50px;
+        height: 53px;
         margin-bottom: 1rem;
     }
 }
